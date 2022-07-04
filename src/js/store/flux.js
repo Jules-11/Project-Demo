@@ -1,45 +1,40 @@
 const getState = ({ getStore, getActions, setStore }) => {
-	return {
-		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
-		},
-		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
-			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
-
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
-
-				//reset the global store
-				setStore({ demo: demo });
-			}
-		}
-	};
+  return {
+    store: {
+      searchInput: ["mushrooms", "quinoa", "cheese"],
+      isLoaded: false,
+      error: null,
+	  items: [], 
+	  shoppingList: [],
+    },
+    actions: {
+      searchInputHandler: (textSearch) => {
+        setStore({ searchInput: textSearch });
+      },
+      searchAPI: (search) => {
+        fetch(
+          `https://api.edamam.com/api/recipes/v2?type=public&app_id=e5010e00&app_key=0326e037783040d1e8513857ee63d982&q=${search}`
+        )
+          .then((response) => response.json())
+          .then(
+            (result) => {
+              setStore({ isLoaded: true });
+              setStore({items: result.hits});
+              // console.table(result.hits[0].recipe);
+            },
+            (error) => {
+              setStore({ isLoaded: true });
+              setStore({error: error});
+              console.log("nooooooooo", error);
+            }
+          );
+      },
+	  updateShoppingList: (ingredient) =>{
+		const store = getStore();
+		setStore({shoppingList: [...store.shoppingList, ingredient]})
+	  }
+    },
+  };
 };
 
 export default getState;
