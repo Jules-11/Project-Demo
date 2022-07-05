@@ -5,11 +5,17 @@ import { Context } from "../store/appContext";
 export const Navbar = () => {
   const { store, actions } = useContext(Context);
 
+  const removeIngredientHandler = (e) => {
+    const index = parseInt(e.target.parentNode.getAttribute("data-index"));
+    actions.removeShoppingListByIndex(index);
+    console.log("Delete ITEM", e)
+  }
+
   console.log("NEW INGREDIENTS", store.shoppingList);
   let list = store.shoppingList.map((ingredient, index) => (
     <li className="list-group-item p-0 d-flex flex-row align-items-center"  key={index}>
       <div>{ingredient.ingredientText}</div> 
-    <div className=""><i className="bi bi-trash3"></i></div>
+    <div onClick={removeIngredientHandler} data-index={index}><i className="bi bi-trash3"></i></div>
   </li>
   ));
   
@@ -59,42 +65,3 @@ export const Navbar = () => {
 
 
 
-
-
-// <nav className="navbar navbar-expand-lg navbar-light bg-light justify-content-between p-3 fixed-top">
-//       <a className="navbar-brand" href="#">
-//         Don't Waste My Food
-//       </a>
-
-//       <div>
-//         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-//           <ul className="navbar-nav mr-auto">
-//             <li className="nav-item dropdown">
-//               <a
-//                 className="nav-link dropdown-toggle"
-//                 href="#"
-//                 id="navbarDropdown"
-//                 role="button"
-//                 data-toggle="dropdown"
-//                 aria-haspopup="true"
-//                 aria-expanded="false"
-//               >
-//                 Dropdown
-//               </a>
-//               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-//                 <a className="dropdown-item" href="#">
-//                   Action
-//                 </a>
-//                 <a className="dropdown-item" href="#">
-//                   Another action
-//                 </a>
-//                 <div className="dropdown-divider"></div>
-//                 <a className="dropdown-item" href="#">
-//                   Something else here
-//                 </a>
-//               </div>
-//             </li>
-//           </ul>
-//         </div>
-//       </div>
-//     </nav>

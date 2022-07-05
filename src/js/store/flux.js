@@ -29,10 +29,32 @@ const getState = ({ getStore, getActions, setStore }) => {
             }
           );
       },
-	  updateShoppingList: (ingredient) =>{
+	  addShoppingList: (ingredient) =>{
 		const store = getStore();
 		setStore({shoppingList: [...store.shoppingList, ingredient]})
-	  }
+	  },
+    removeShoppingList: (ingredient) =>{
+      const store = getStore();
+      const list = store.shoppingList.filter((line) => {
+        if(line.recipeUri === ingredient.recipeUri && line.ingredientIndex === ingredient.ingredientIndex){
+          return false;
+        } else {
+          return true;
+        }
+      })
+      setStore({shoppingList: list})
+      },
+      removeShoppingListByIndex: (index) => {
+        const store = getStore();
+        const list = store.shoppingList.filter((line, i) => {
+          if(i === index){
+            return false;
+          } else {
+            return true;
+          }
+        })
+        setStore({shoppingList: list})
+      }
     },
   };
 };

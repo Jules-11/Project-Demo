@@ -13,7 +13,16 @@ const RecipeCard = ({ item }) => {
         recipeUri: e.target.getAttribute("data-recipe-uri"),
       };
 
-      actions.updateShoppingList(ingredient);
+      actions.addShoppingList(ingredient);
+      console.log(store.shoppingList);
+    } else {
+      const ingredient = {
+        ingredientIndex: e.target.getAttribute("data-recipe-ingredient-index"),
+        ingredientText: e.target.getAttribute("data-recipe-ingredient-text"),
+        recipeUri: e.target.getAttribute("data-recipe-uri"),
+      };
+
+      actions.removeShoppingList(ingredient);
       console.log(store.shoppingList);
     }
   };
