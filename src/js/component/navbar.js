@@ -7,13 +7,16 @@ export const Navbar = () => {
 
   console.log("NEW INGREDIENTS", store.shoppingList);
   let list = store.shoppingList.map((ingredient, index) => (
-    <li className="list-group-item p-0" key={index}>{ingredient.ingredientText}</li>
+    <li className="list-group-item p-0 d-flex flex-row align-items-center"  key={index}>
+      <div>{ingredient.ingredientText}</div> 
+    <div className=""><i className="bi bi-trash3"></i></div>
+  </li>
   ));
   
   if (store.shoppingList.length === 0) {
     list = (
       <li className="text-center">
-        Add Only what you need! <i className="bi bi-robot"></i>
+        Add Only what you need!
       </li>
     );
   }

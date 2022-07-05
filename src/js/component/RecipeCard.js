@@ -25,7 +25,7 @@ const RecipeCard = ({ item }) => {
     <div className="col-6 offset-3">
       <div className="card" style={{ marginTop: "40px" }}>
         <div style={{ paddingTop: "20px", paddingLeft: "20px" }}>
-          <h2 className="card-title text-center">{item.recipe.label}</h2>
+          <h2 className="card-title text-center">{item.recipe.label} </h2>
         </div>
         <img
           src={item.recipe.image}
