@@ -13,7 +13,7 @@ export const Navbar = () => {
 
   console.log("NEW INGREDIENTS", store.shoppingList);
   let list = store.shoppingList.map((ingredient, index) => (
-    <li className="list-group-item p-0 d-flex flex-row align-items-center"  key={index}>
+    <li className="list-group-item p-0 d-flex flex-row align-items-center justify-content-between"  key={index}>
       <div>{ingredient.ingredientText}</div> 
     <div onClick={removeIngredientHandler} data-index={index}><i className="bi bi-trash3"></i></div>
   </li>
