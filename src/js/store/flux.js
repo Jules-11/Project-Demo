@@ -12,9 +12,12 @@ const getState = ({ getStore, getActions, setStore }) => {
       searchInputHandler: (textSearch) => {
         setStore({ searchInput: textSearch });
       },
-      searchAPI: (search, option) => {
+      searchAPI: () => {
+        const store = getStore();
+        const search = store.searchInput
+        const diet = store.pillDietInput
         fetch(
-          `https://api.edamam.com/api/recipes/v2?type=public&app_id=e5010e00&app_key=0326e037783040d1e8513857ee63d982&q=${search}`
+          `https://api.edamam.com/api/recipes/v2?type=public&app_id=e5010e00&app_key=0326e037783040d1e8513857ee63d982&q=${search}&healt=${diet}`
         )
           .then((response) => response.json())
           .then(

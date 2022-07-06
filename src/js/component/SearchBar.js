@@ -49,8 +49,8 @@ const SearchBar = () => {
   const searchBarHandler = (e) => {
     e.preventDefault();
     console.log("Testing Search Bar", searchOption.current.value);
-    // actions.searchInputHandler(searchRef.current.value);
-    actions.searchAPI(searchRef.current.value, searchOption.current.value);
+    actions.searchInputHandler(searchRef.current.value);
+    actions.searchAPI();
   };
 
   const dietRequirementHandler = (e) => {
@@ -63,8 +63,8 @@ const SearchBar = () => {
     }
   }
 
-  const dietPills = dietArr.map((diet)=> {
-    return <Pill diet={diet}/>
+  const dietPills = dietArr.map((diet, index)=> {
+    return <Pill diet={diet} key={index}/>
   })
 
   return (
