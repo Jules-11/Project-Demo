@@ -63,9 +63,9 @@ const SearchBar = () => {
     }
   }
 
-  const dietPills = dietArr.map((diet, index)=> {
+  const dietPills =  <div className="col-6 offset-3 bg-light p-4 rounded"> {dietArr.map((diet, index)=> {
     return <Pill diet={diet} key={index}/>
-  })
+  })} </div>
 
   return (
     <div className="row mt-5 pt-5">
@@ -97,9 +97,9 @@ const SearchBar = () => {
             </div>
           </form>
         </div>
-        <div className="col-6 offset-3">
+       
           {dietReqDiv && dietPills}
-        </div>
+   
       </div>
     </div>
   );
